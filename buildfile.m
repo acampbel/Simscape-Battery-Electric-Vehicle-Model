@@ -9,6 +9,12 @@ plan("test") = TestTask(...
     CodeCoverageResults=["results/coverage.html", "results/coverage.xml"], ...
     SourceFiles=pwd);
 
+plan("jupyter").Inputs = "**/*.mlx";
+plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx",".ipynb");
+
+plan("doc").Inputs = "**/*.mlx";
+plan("doc").Outputs = replace(plan("doc").Inputs, ".mlx",".html"); 
+
 plan("clean") = CleanTask;
 
 plan.DefaultTasks = ["check", "lint", "test"];
